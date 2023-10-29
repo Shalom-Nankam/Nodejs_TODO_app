@@ -1,6 +1,4 @@
-- Authentication using just username and password
-- ER diagram to show relationship between users and tasks
-- Write tests
-- Handle error globally and locally
-- use logs
-- use mongodb
+##TODO APP
+This is a small TODO application built using Nodejs and EJS templating engine.
+
+It also uses MongoDB Atlas to host a database used for CRUD operations.
