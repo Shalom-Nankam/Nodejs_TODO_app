@@ -11,10 +11,6 @@ const router = express.Router();
 
 router.use(cookieParser());
 
-router.get("/", (req, res) => {
-  res.redirect("/views/index");
-});
-
 router.get("/index", (req, res) => {
   res.render("index", { user: res.locals.user || null, error: null });
 });
@@ -26,7 +22,8 @@ router.get("/signup", (req, res) => {
 router.post("/signup", async (req, res) => {
   const newUser = await userService.CreateUser(req.body);
   if (newUser.code === 201) {
-    res.render("index", { user: res.locals.user || null });
+    res.redirect("/views/index");
+    // res.render("index", { user: res.locals.user || null });
   } else {
     res.render("signup", { error: newUser.message });
   }
