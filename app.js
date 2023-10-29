@@ -12,7 +12,6 @@ app.use(express.urlencoded({ extended: true }));
 
 app.set("view engine", "ejs");
 
-app.use("/", viewsRouter);
 app.use("/views", viewsRouter);
 
 db.connect();
@@ -20,5 +19,3 @@ db.connect();
 app.listen(PORT, () => {
   console.log("Server started successfully");
 });
-
-// module.exports = app;

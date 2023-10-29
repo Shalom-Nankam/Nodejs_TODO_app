@@ -12,7 +12,7 @@ const router = express.Router();
 router.use(cookieParser());
 
 router.get("/", (req, res) => {
-  res.redirect("index");
+  res.redirect("/views/index");
 });
 
 router.get("/index", (req, res) => {
