@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign up</title>
+    <style>
+      body {
+        background-color: chocolate;
+      }
+
+      h3 {
+        text-align: center;
+        font-size: 30px;
+      }
+
+      #frm {
+        justify-content: center;
+      }
+
+      .login {
+        margin: auto;
+        width: 300px;
+        border: 2px solid black;
+        border-radius: 16px;
+        background-color: white;
+        margin-top: 50px;
+        padding: 30px 30px;
+      }
+
+      input {
+        margin-bottom: 20px;
+        margin-top: 10px;
+        height: 20px;
+        width: 200px;
+      }
+
+      #btn {
+        background-color: chocolate;
+        height: 30px;
+        width: 200px;
+        color: white;
+        border-radius: 10px;
+      }
+
+      #btn2 {
+        background-color: white;
+        height: 30px;
+        width: 200px;
+        color: black;
+        border-radius: 10px;
+      }
+
+      .error {
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login">
+      <h3>Sign up</h3>
+      <form id="frm" action="/views/signup" method="post">
+        <label for="email">First name:</label><br />
+        <input
+          type="text"
+          id="first_name"
+          name="first_name"
+          value=""
+          required
+        /><br />
+        <label for="password">Last name:</label><br />
+        <input
+          type="text"
+          id="last_name"
+          name="last_name"
+          value=""
+          required
+        /><br />
+        <label for="email">Email:</label><br />
+        <input type="text" id="email" name="email" value="" required /><br />
+        <label for="password">Password:</label><br />
+        <input
+          type="password"
+          id="password"
+          name="password"
+          value=""
+          required
+        />
+        <br />
+        <input id="btn" type="submit" value="Submit" />
+      </form>
+      <form action="/views/index" method="get">
+        <input id="btn2" type="submit" value="Sign in" />
+      </form>
+      <% if (error) { %>
+      <p class="error"><%= error %></p>
+      <% } %>
+    </div>
+  </body>
+</html>

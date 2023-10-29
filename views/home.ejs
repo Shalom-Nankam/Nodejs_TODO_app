@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home</title>
+    <style>
+      body {
+        margin: 30px 100px;
+      }
+      .head {
+        display: flex;
+        width: 100%;
+        align-items: center;
+        justify-content: space-between;
+      }
+      h2 {
+        font-size: 30px;
+      }
+
+      button {
+        margin-left: 30px;
+        margin-right: 30px;
+        text-decoration: none;
+      }
+
+      .head_btns {
+        display: flex;
+        align-items: center;
+      }
+
+      .head_btns button {
+        height: 60px;
+        width: 150px;
+        border-radius: 20px;
+        padding: 20px;
+      }
+
+      #create {
+        background-color: chocolate;
+        color: white;
+      }
+
+      #logout {
+        background-color: white;
+        border: 2px solid chocolate;
+        color: chocolate;
+      }
+
+      .task-list {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 90%;
+        border: 2px solid black;
+        margin-top: 20px;
+        border-radius: 16px;
+        padding: 10px;
+      }
+      .task-action {
+        display: flex;
+      }
+      .task-info {
+        width: 70%;
+      }
+
+      .title {
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+      .status {
+        font-weight: 14px;
+        font-weight: bold;
+      }
+      #done {
+        border: 2px solid chocolate;
+        color: chocolate;
+        background-color: white;
+        height: 40px;
+        width: 150px;
+        border-radius: 14px;
+      }
+
+      #comp {
+        border: 2px solid green;
+        color: green;
+        background-color: white;
+        height: 40px;
+        width: 150px;
+        border-radius: 14px;
+      }
+
+      .error {
+        color: red;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      #dlt {
+        border: 2px solid red;
+        background-color: white;
+        color: red;
+        height: 40px;
+        width: 150px;
+        border-radius: 14px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="head">
+      <div class="title">
+        <% if(user){ %>
+        <h2>Welcome back, <%= user.first_name %></h2>
+        <% } %>
+        <!-- <h2>Welcome back</h2>  -->
+      </div>
+      <div class="head_btns">
+        <form action="/views/tasks/create" method="get">
+          <button type="submit" id="create">Create task</button>
+        </form>
+        <form action="/views/logout" method="get">
+          <button type="submit" id="logout">Log out</button>
+        </form>
+      </div>
+    </div>
+    <% if (error) { %>
+    <p class="error"><%= error %></p>
+    <% } %> <% for (var i=0; i < tasks.length; i++) { %>
+    <div class="task-list">
+      <div class="task-info">
+        <p class="title"><%= tasks[i].title %></p>
+        <p class="status">(<%= tasks[i].status %>)</p>
+      </div>
+      <div class="task-action">
+        <% if( tasks[i].status == 'Pending') { %>
+        <form method="post" action="/views/tasks/update/<%= tasks[i]._id %>">
+          <button type="submit" id="done">Mark done</button>
+        </form>
+        <% } else { %>
+        <form method="post" action="">
+          <button type="button" id="comp">Completed</button>
+        </form>
+        <% } %>
+        <form action="/views/tasks/delete/<%= tasks[i]._id %>" method="post">
+          <button type="submit" id="dlt">Delete</button>
+        </form>
+      </div>
+      <br />
+    </div>
+    <% } %>
+  </body>
+</html>
